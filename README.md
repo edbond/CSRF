@@ -1,12 +1,13 @@
 # CSRF
 
-Answer to http://stackoverflow.com/questions/20430281/set-ring-anti-forgery-csrf-header-token
+Answer example to http://stackoverflow.com/questions/20430281/set-ring-anti-forgery-csrf-header-token
 
 ## Usage
 
 lein ring server
 
 1. Get CSRF Token
+
 ```
 curl --cookie-jar cookies "http://localhost:3000/"
 
