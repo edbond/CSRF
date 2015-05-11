@@ -33,7 +33,14 @@ And without a header it should be
 
 > <h1>Invalid anti-forgery token</h1>
 
-However with the latest versions of the compojure and ring libraries, I get "Invalid..." even with a valid token.
+## Problem
+
+With the latest versions of the compojure (>= 1.2.0) and ring libraries, I get "Invalid..." even with a valid token.
+
+## Solution
+`ring-defaults` includes anti-forgery by default for `POST` requests (and others that modify data).
+The use of `wrap-defaults routes site-defaults` with `wrap-anti-forgery` results in generating the anti-forgery token
+twice and thus invalidating the token you receive with a get-request. So, just remove
 
 ## License
 

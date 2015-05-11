@@ -1,4 +1,4 @@
-(defproject csrf "0.1.0-SNAPSHOT"
+(defproject csrf "0.1.1-SNAPSHOT"
   :description "Example of broken CSRF token"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
