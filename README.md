@@ -11,7 +11,7 @@ Answer example to http://stackoverflow.com/questions/20430281/set-ring-anti-forg
 - Get CSRF Token
 
 ```
-curl --cookie-jar cookies "http://localhost:3000/"
+curl -X GET --cookie-jar cookies "http://localhost:3000/"
 
 {"csrf-token":"2BYov8r71IswCQaQAIcvYxrihHRaqAdq5vFRM1zWbl4FzVz7KASo778zBFsq+cGtkLFzXYoUbWd0BqiU"}
 ```
@@ -21,14 +21,16 @@ curl --cookie-jar cookies "http://localhost:3000/"
 - Now send POST request
 
 ```
-curl -v --cookie cookies -F "email=someone@gmail.com" --header "X-CSRF-Token: 2BYov8r71IswCQaQAIcvYxrihHRaqAdq5vFRM1zWbl4FzVz7KASo778zBFsq+cGtkLFzXYoUbWd0BqiU" "http://localhost:3000/send"
+curl -X POST -v --cookie cookies -F "email=someone@gmail.com" --header "X-CSRF-Token: 2BYov8r71IswCQaQAIcvYxrihHRaqAdq5vFRM1zWbl4FzVz7KASo778zBFsq+cGtkLFzXYoUbWd0BqiU" "http://localhost:3000/send"
 ```
 
-> Result is "ok"
+> Result should be "ok"
 
-Without a header it will be
+And without a header it should be
 
 > <h1>Invalid anti-forgery token</h1>
+
+However with the latest versions of the compojure and ring libraries, I get "Invalid..." even with a valid token.
 
 ## License
 
