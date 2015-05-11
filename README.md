@@ -45,7 +45,6 @@ twice and thus invalidating the token you receive with a get-request. So, just r
 ## License
 
 Copyright © 2013 WTF Inc.
-Copyright © 2015 Sven Pedersen
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
