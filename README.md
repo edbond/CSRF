@@ -2,6 +2,9 @@
 
 Answer example to http://stackoverflow.com/questions/20430281/set-ring-anti-forgery-csrf-header-token
 
+Modified for http://stackoverflow.com/questions/30172569/clojure-anti-forgery-csrf-token-invalid-with-latest-version-ring-compojure
+ to demonstrate failure with latest libraries.
+
 ## Usage
 
 - Start server
@@ -35,6 +38,7 @@ However with the latest versions of the compojure and ring libraries, I get "Inv
 ## License
 
 Copyright © 2013 WTF Inc.
+Copyright © 2015 Sven Pedersen
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
