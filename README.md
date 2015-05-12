@@ -2,6 +2,9 @@
 
 Answer example to http://stackoverflow.com/questions/20430281/set-ring-anti-forgery-csrf-header-token
 
+Modified for http://stackoverflow.com/questions/30172569/clojure-anti-forgery-csrf-token-invalid-with-latest-version-ring-compojure
+ to demonstrate failure with latest libraries.
+
 ## Usage
 
 - Start server
@@ -11,7 +14,7 @@ Answer example to http://stackoverflow.com/questions/20430281/set-ring-anti-forg
 - Get CSRF Token
 
 ```
-curl --cookie-jar cookies "http://localhost:3000/"
+curl -X GET --cookie-jar cookies "http://localhost:3000/"
 
 {"csrf-token":"2BYov8r71IswCQaQAIcvYxrihHRaqAdq5vFRM1zWbl4FzVz7KASo778zBFsq+cGtkLFzXYoUbWd0BqiU"}
 ```
@@ -21,14 +24,23 @@ curl --cookie-jar cookies "http://localhost:3000/"
 - Now send POST request
 
 ```
-curl -v --cookie cookies -F "email=someone@gmail.com" --header "X-CSRF-Token: 2BYov8r71IswCQaQAIcvYxrihHRaqAdq5vFRM1zWbl4FzVz7KASo778zBFsq+cGtkLFzXYoUbWd0BqiU" "http://localhost:3000/send"
+curl -X POST -v --cookie cookies -F "email=someone@gmail.com" --header "X-CSRF-Token: 2BYov8r71IswCQaQAIcvYxrihHRaqAdq5vFRM1zWbl4FzVz7KASo778zBFsq+cGtkLFzXYoUbWd0BqiU" "http://localhost:3000/send"
 ```
 
-> Result is "ok"
+> Result should be "ok"
 
-Without a header it will be
+And without a header it should be
 
 > <h1>Invalid anti-forgery token</h1>
+
+## Problem
+
+With the latest versions of the compojure (>= 1.2.0) and ring libraries, I get "Invalid..." even with a valid token.
+
+## Solution
+`ring-defaults` includes anti-forgery by default for `POST` requests (and others that modify data).
+The use of `wrap-defaults routes site-defaults` with `wrap-anti-forgery` results in generating the anti-forgery token
+twice and thus invalidating the token you receive with a get-request. So, just remove
 
 ## License
 
