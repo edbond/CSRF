@@ -40,11 +40,11 @@ With the latest versions of the compojure (>= 1.2.0) and ring libraries, I get "
 ## Solution
 `ring-defaults` includes anti-forgery by default for `POST` requests (and others that modify data).
 The use of `wrap-defaults routes site-defaults` with `wrap-anti-forgery` results in generating the anti-forgery token
-twice and thus invalidating the token you receive with a get-request. So, just remove
+twice and thus invalidating the token you receive with a get-request. So, just remove `(wrap-anti-forgery)`
 
 ## License
 
-Copyright © 2013 WTF Inc.
+Copyright © 2013 Eduard Bondarenko.
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
